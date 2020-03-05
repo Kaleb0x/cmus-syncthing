@@ -17,7 +17,9 @@ def delete(dir_entry):
 
 def clean_sync_dir():
     for entry in os.scandir(SYNC_DIR):
-        if entry.name != "tracks" and entry.name != "playlists":
+        if entry.name != "tracks" and \
+           entry.name != "playlists" and \
+           entry.name != ".stfolder":
             delete(entry)
 
     for entry in os.scandir(os.path.join(SYNC_DIR, "playlists")):
