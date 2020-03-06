@@ -15,7 +15,7 @@ def delete(dir_entry):
         os.remove(dir_entry.path)
 
 
-def clean_sync_dir():
+def clean_sync_dir(plst):
     for entry in os.scandir(SYNC_DIR):
         if entry.name != "tracks" and \
            entry.name != "playlists" and \
@@ -23,7 +23,8 @@ def clean_sync_dir():
             delete(entry)
 
     for entry in os.scandir(os.path.join(SYNC_DIR, "playlists")):
-        if entry.name[-5:] != ".m3u8":
+        if entry.name[:-5] not in plst or \
+           entry.name[-5:] != ".m3u8":
             delete(entry)
 
 
@@ -156,4 +157,5 @@ if __name__ == "__main__":
 
     if tracks_added or tracks_removed:
         generate_m3u8(plst)
-    clean_sync_dir()
+
+    clean_sync_dir(plst)
