@@ -22,9 +22,9 @@ For those who want to run it periodically using systemd timers, unit configurati
 
 ## Known issues
 - If two or more tracks have the same filename, the last track to be copied by cmus-syncthing will overwrite the others in the tracks directory. The resulting issue is that all the items in the playlists refering to these tracks will point to that last track.
+- Accidentally deleted playlists in the sync directory are not regenerated.
 
 ## TODO
-- Make a Python package out of the script
 
 ## Licensing
 This work is under the 0-clause BSD license. I would be very grateful to anyone who mentions me in any derivative work and distributes it back to the community. I'd rather see people act wisely as a trait, not by legal requirement.
