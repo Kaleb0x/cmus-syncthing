@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 from cmussyncthing import SyncMachine
-import os
 
 
 CONFIG_FILE = "cmus-syncthing.conf"
