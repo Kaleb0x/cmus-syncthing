@@ -44,7 +44,12 @@ class SyncMachine:
                entry.name != ".stfolder":
                 self._delete_filesystem_entry(entry)
 
-        for entry in os.scandir(os.path.join(self._sync_dir, "playlists")):
+        playlist_path = os.path.join(self._sync_dir, "playlists")
+
+        if not os.path.isdir(playlist_path):
+            return
+
+        for entry in os.scandir(playlist_path):
             if entry.name[:-5] not in plst or \
                entry.name[-5:] != ".m3u8":
                 self._delete_filesystem_entry(entry)
