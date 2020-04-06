@@ -70,6 +70,23 @@ class SyncMachine:
 
                     f.write(track_path)
 
+    def _check_deleted_playlists(self, plst):
+        playlist_deleted = False
+
+        full_path = os.path.join(self._sync_dir, "playlists")
+
+        playlists_in_sync_dir = [os.path.basename(f)[:-5]
+                                 for f in os.scandir(full_path)]
+
+        for playlist in plst:
+            if playlist not in playlists_in_sync_dir:
+                playlist_deleted = True
+                logging.warning("Playlist {} ".format(playlist) +
+                                "was manually deleted")
+                break
+
+        return playlist_deleted
+
     def _remove_deleted_tracks(self, plst_tracklist, drct):
         tracks_removed = False
         full_path = os.path.join(self._sync_dir, "tracks")
@@ -149,8 +166,9 @@ class SyncMachine:
 
         tracks_added = self._add_new_tracks(plst_tracklist, drct)
         tracks_removed = self._remove_deleted_tracks(plst_tracklist, drct)
+        playlist_deleted = self._check_deleted_playlists(plst)
 
-        if tracks_added or tracks_removed:
+        if tracks_added or tracks_removed or playlist_deleted:
             self._generate_m3u8(plst)
 
         self._clean_sync_dir(plst)
