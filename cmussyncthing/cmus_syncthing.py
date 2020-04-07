@@ -19,6 +19,13 @@ class SyncMachine:
         config.read(config_file)
 
         try:
+            verbose_mode = config["Output"]["verbose"]
+            self._verbose_mode = (verbose_mode == "True")
+        except Exception:
+            logging.warning("No verbosity option set")
+            self._verbose_mode = False
+
+        try:
             self._playlist_dir = config["Directories"]["playlists"]
             self._sync_dir = config["Directories"]["syncthing"]
         except Exception:
@@ -36,6 +43,12 @@ class SyncMachine:
             sh.rmtree(dir_entry.path)
         else:
             os.remove(dir_entry.path)
+
+    def _register_info(self, info):
+        logging.info(info)
+
+        if self._verbose_mode == True:
+            print(info)
 
     def _clean_sync_dir(self, plst):
         for entry in os.scandir(self._sync_dir):
@@ -70,7 +83,7 @@ class SyncMachine:
 
                     f.write(track_path)
 
-    def _check_deleted_playlists(self, plst):
+    def _check_missing_playlists(self, plst):
         playlist_deleted = False
 
         full_path = os.path.join(self._sync_dir, "playlists")
@@ -81,11 +94,10 @@ class SyncMachine:
         for playlist in plst:
             if playlist not in playlists_in_sync_dir:
                 playlist_deleted = True
-                logging.warning("Playlist {} ".format(playlist) +
-                                "was manually deleted")
-                break
+                self._register_info("Playlist {} missing ".format(playlist))
 
         return playlist_deleted
+
 
     def _remove_deleted_tracks(self, plst_tracklist, drct):
         tracks_removed = False
@@ -99,7 +111,8 @@ class SyncMachine:
             sync_dir_track_path = os.path.join(full_path, track)
             os.remove(sync_dir_track_path)
 
-            logging.info("Removed track {}".format(track))
+            self._register_info("Removed track {}".format(track))
+
             tracks_removed = True
 
         return tracks_removed
@@ -114,10 +127,11 @@ class SyncMachine:
             if track_name in drct:
                 continue
 
+
             sync_dir_track_path = os.path.join(full_path, track_name)
             sh.copyfile(track, sync_dir_track_path)
 
-            logging.info("Added track {}".format(track_name))
+            self._register_info("Added track {}".format(track_name))
             tracks_added = True
 
         return tracks_added
@@ -166,7 +180,7 @@ class SyncMachine:
 
         tracks_added = self._add_new_tracks(plst_tracklist, drct)
         tracks_removed = self._remove_deleted_tracks(plst_tracklist, drct)
-        playlist_deleted = self._check_deleted_playlists(plst)
+        playlist_deleted = self._check_missing_playlists(plst)
 
         if tracks_added or tracks_removed or playlist_deleted:
             self._generate_m3u8(plst)
