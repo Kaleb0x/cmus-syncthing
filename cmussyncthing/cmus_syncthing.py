@@ -94,7 +94,8 @@ class SyncMachine:
         for playlist in plst:
             if playlist not in playlists_in_sync_dir:
                 playlist_deleted = True
-                self._register_info("Playlist {} missing ".format(playlist))
+                self._register_info("Playlist {} missing. ".format(playlist) +
+                                    "Will be added.")
 
         return playlist_deleted
 
