@@ -9,12 +9,12 @@ cmus-syncthing exports cmus playlists and their tracks to a specific folder that
 
 ## How to report a bug ?
 1. Make sure the bug has not been reported yet on Issues.
-2. Fill out a new bug issue on Issues. Be specific in your title, and make sure to give details about how to reproduce the bug, what behavior you get, and what the expected behavior is.
+2. Fill out a new bug issue on Issues and follow the template. Be specific in your title, and make sure to give details about how to reproduce the bug, what behavior you get, and what the expected behavior is.
 
-## How to suggest a new feature ?
-1. Make sure no one has already suggested your idea on Issues.
+## How to request a new feature ?
+1. Make sure no one has already requested your idea on Issues.
 2. Make sure your idea respects the principle behind cmus-syncthing.
-3. If you didn't find a similar idea on Issues, fill out a new enhancement issue. Be specific in your title, and describe thoroughly your idea.
+3. If you didn't find a similar idea on Issues, fill out a new enhancement issue and follow the template. Be specific in your title, and describe thoroughly your idea.
    
 ## How to contribute to the code ?
 ### Workflow
