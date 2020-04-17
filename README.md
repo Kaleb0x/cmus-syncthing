@@ -6,7 +6,7 @@ Exports cmus playlists to a specific directory that can be synced with another d
 Requires python >= 3.5.
 
 ## Setup
-cmus-syncthing.conf must be edited beforehand. It contains a single section with two values as follows :
+The *\[Directories\]* section of cmus-syncthing.conf must be edited beforehand as follows :
 ```
 [Directories]
 playlists=/path/to/cmus/playlists
