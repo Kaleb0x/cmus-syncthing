@@ -19,7 +19,7 @@ class SyncMachine:
         config.read(config_file)
 
         try:
-            verbose_mode = config["Output"]["verbose"]
+            verbose_mode = config["Options"]["verbose"]
             self._verbose_mode = (verbose_mode == "True")
         except Exception:
             logging.warning("No verbosity option set")
