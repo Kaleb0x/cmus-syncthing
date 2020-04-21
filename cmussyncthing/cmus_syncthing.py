@@ -26,6 +26,12 @@ class SyncMachine:
             self._verbose_mode = False
 
         try:
+            excluded_playlists = config["Options"]["exclude"]
+            self._excluded_playlists = excluded_playlists.split(",")
+        except Exception:
+            self._excluded_playlists = list()
+
+        try:
             self._playlist_dir = config["Directories"]["playlists"]
             self._sync_dir = config["Directories"]["syncthing"]
         except Exception:
@@ -160,6 +166,9 @@ class SyncMachine:
         plst_tracklist = set()
 
         for playlist in os.scandir(self._playlist_dir):
+            if os.path.basename(playlist) in self._excluded_playlists:
+                continue
+
             full_path = os.path.join(self._playlist_dir, playlist)
 
             if os.path.isdir(full_path):
