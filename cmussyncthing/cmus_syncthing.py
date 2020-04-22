@@ -53,7 +53,7 @@ class SyncMachine:
     def _register_info(self, info):
         logging.info(info)
 
-        if self._verbose_mode == True:
+        if self._verbose_mode is True:
             print(info)
 
     def _clean_sync_dir(self, plst):
@@ -105,7 +105,6 @@ class SyncMachine:
 
         return playlist_deleted
 
-
     def _remove_deleted_tracks(self, plst_tracklist, drct):
         tracks_removed = False
         full_path = os.path.join(self._sync_dir, "tracks")
@@ -133,7 +132,6 @@ class SyncMachine:
 
             if track_name in drct:
                 continue
-
 
             sync_dir_track_path = os.path.join(full_path, track_name)
             sh.copyfile(track, sync_dir_track_path)
