@@ -134,7 +134,11 @@ class SyncMachine:
                 continue
 
             sync_dir_track_path = os.path.join(full_path, track_name)
-            sh.copyfile(track, sync_dir_track_path)
+            try:
+                sh.copyfile(track, sync_dir_track_path)
+            except FileNotFoundError:
+                logging.warning("Track {} not found".format(track))
+                continue
 
             self._register_info("Added track {}".format(track_name))
             tracks_added = True
