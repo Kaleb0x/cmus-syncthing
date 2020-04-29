@@ -10,4 +10,4 @@
  - Closes # (feature)
  
  ## Are you aware of the contributing guidelines ?
- - [ ] I read the [contributing guidelines](https://github.com/atrax-dev/cmus-syncthing/blob/master/.github/CONTRIBUTING.md) and I did follow them
+ - [ ] I read the [contributing guidelines](https://github.com/atrax-dev/cmus-syncthing/blob/master/CONTRIBUTING.md) and I did follow them
