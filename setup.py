@@ -7,5 +7,10 @@ if __name__ == "__main__":
         name="cmus-syncthing",
         version="0.1",
         packages=find_packages(),
-        install_requires=open("requirements.txt").read().splitlines()
+        install_requires=open("requirements.txt").read().splitlines(),
+        entry_points={
+            "console_scripts" : [
+                "cmus-syncthing = cmussyncthing.main:main"
+                ]
+            }
     )
