@@ -3,7 +3,9 @@
 Exports cmus playlists to a specific directory that can be synced with another device using Syncthing. It can be used to export cmus playlists and their corresponding tracks to an Android smartphone running Syncthing.
 
 ## Prerequisites
-Requires python >= 3.5.
+Requires :
+- python >= 3.5.
+- pyxdg >= 0.26
 
 ## Setup
 The *\[Directories\]* section of cmus-syncthing.conf must be edited beforehand as follows :
