@@ -5,8 +5,9 @@ from os.path import join
 
 
 def main():
-    config_file = join(xdg_config_home, 
-            "cmus-syncthing", 
-            "cmus-syncthing.conf")
+    config_file = join(xdg_config_home,
+                       "cmus-syncthing",
+                       "cmus-syncthing.conf"
+                       )
     sync_machine = SyncMachine(config_file)
     sync_machine.sync()
