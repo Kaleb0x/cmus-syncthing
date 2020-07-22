@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from xdg.BaseDirectory import xdg_config_home
 import configparser
 import shutil as sh
 import logging
@@ -9,10 +10,50 @@ import os
 class SyncMachine:
     def __init__(self, config_file):
         if not os.path.isfile(config_file):
-            logging.critical("Config file not found")
-            sys.exit(1)
+            self.__init_conf(config_file)
 
         self.configuration(config_file)
+
+    def __init_conf(self, config_file):
+        config = configparser.ConfigParser()
+
+        answer = input("This is your first time running cmus-syncthing.\n" +
+                       "Would you like to proceed with the configuration?" +
+                       " [Y/n]: ")
+
+        if answer.lower() != "y" and answer != "":
+            print("Aborting.")
+            sys.exit(1)
+
+        config.add_section("Directories")
+        config.add_section("Options")
+
+        cmus_config_path = os.path.join(xdg_config_home, "cmus", "playlists")
+        answer = input("Location of cmus playlists [" + cmus_config_path +
+                       "]:")
+
+        if answer == "":
+            config.set("Directories", "playlists", cmus_config_path)
+        else:
+            config.set("Directories", "playlists", answer)
+
+        syncthing_path = os.path.expanduser(os.path.join("~", "Sync"))
+        answer = input("Location of sync directory [" + syncthing_path + "]:")
+
+        if answer == "":
+            config.set("Directories", "syncthing", syncthing_path)
+        else:
+            config.set("Directories", "syncthing", answer)
+
+        answer = input("Run in verbose mode ? [Y/n] : ")
+
+        if answer == "" or answer.lower() == "y":
+            config.set("Options", "verbose", "True")
+        else:
+            config("Options", "verbose", "False")
+
+        with open(config_file, "w") as f:
+            config.write(f)
 
     def configuration(self, config_file):
         config = configparser.ConfigParser()
