@@ -3,7 +3,7 @@ Description= Exports cmus playlists to a folder
 
 [Service]
 Type=oneshot
-ExecStart=/usr/bin/cmus-syncthing
+ExecStart=cmus-syncthing
 
 [Install]
 WantedBy=multi-user.target
