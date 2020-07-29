@@ -2,6 +2,7 @@
 from cmussyncthing.cmus_syncthing import SyncMachine
 from xdg.BaseDirectory import xdg_config_home
 from os.path import join
+import sys
 
 
 def main():
@@ -9,5 +10,11 @@ def main():
                        "cmus-syncthing",
                        "cmus-syncthing.conf"
                        )
-    sync_machine = SyncMachine(config_file)
+
+    if len(sys.argv) == 2 and sys.argv[1] == "init":
+        init = True
+    else:
+        init = False
+
+    sync_machine = SyncMachine(config_file, init)
     sync_machine.sync()

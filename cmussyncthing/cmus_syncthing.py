@@ -8,22 +8,14 @@ import os
 
 
 class SyncMachine:
-    def __init__(self, config_file):
-        if not os.path.isfile(config_file):
+    def __init__(self, config_file, init=False):
+        if init == True:
             self.__init_conf(config_file)
 
         self.configuration(config_file)
 
     def __init_conf(self, config_file):
         config = configparser.ConfigParser()
-
-        answer = input("This is your first time running cmus-syncthing.\n" +
-                       "Would you like to proceed with the configuration?" +
-                       " [Y/n]: ")
-
-        if answer.lower() != "y" and answer != "":
-            print("Aborting.")
-            sys.exit(1)
 
         config.add_section("Directories")
         config.add_section("Options")
@@ -56,6 +48,10 @@ class SyncMachine:
             config.write(f)
 
     def configuration(self, config_file):
+        if not os.path.isfile(config_file):
+            logging.critical("Missing config file.\nRun cmus-syncthing init.")
+            sys.exit(1)
+
         config = configparser.ConfigParser()
         config.read(config_file)
 
