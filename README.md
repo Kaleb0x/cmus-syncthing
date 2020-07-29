@@ -1,28 +1,22 @@
 # cmus-syncthing
 
-Exports cmus playlists to a specific directory that can be synced with another device using Syncthing. It can be used to export cmus playlists and their corresponding tracks to an Android smartphone running Syncthing.
+Exports cmus playlists to a specific directory (or sync directory) that can be synced with another device using Syncthing. It can be used to export cmus playlists and their corresponding tracks to an Android smartphone running Syncthing.
 
-## Prerequisites
-Requires :
-- python >= 3.5.
-- pyxdg >= 0.26
+## Requirements
+See [requirements.txt](requirements.txt).
 
-## Setup
-The *\[Directories\]* section of cmus-syncthing.conf must be edited beforehand as follows :
+## Installation
+### Manual installation
+
 ```
-[Directories]
-playlists=/path/to/cmus/playlists
-syncthing=/path/to/sync/directory
+python setup.py build
+sudo python setup.py install
 ```
-
-cmus playlists are usually stored in ~/.config/cmus/playlists.
-
-## Manual sync
-The config file must specify both playlists and syncthing directories before running cmus-syncthing. Running cmus-syncthing.py will then create two subdirectories in the syncthing directory : 
-  - *playlists* that will be populated with cmus playlists as .m3u8 files
-  - *tracks* where all the tracks found in the playlists will be copied
-
-For those who want to run it periodically using systemd timers, unit configuration files are provided.
+## Configuration
+Before running cmus-syncthing for the first time, you need to generate a configuration file. To do so, run : 
+```
+cmus-syncthing init
+```
 
 ## Contribution
 Contributions are welcome. Please read the [contribution guidelines](CONTRIBUTING.md) beforehand.
