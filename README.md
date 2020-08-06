@@ -1,5 +1,4 @@
 # cmus-syncthing
-
 Exports cmus playlists to a specific directory (or sync directory) that can be synced with another device using Syncthing. It can be used to export cmus playlists and their corresponding tracks to an Android smartphone running Syncthing.
 
 ## Requirements
@@ -7,11 +6,14 @@ See [requirements.txt](requirements.txt).
 
 ## Installation
 ### Manual installation
-
 ```
 python setup.py build
 sudo python setup.py install
 ```
+
+### Archlinux
+A [package](https://aur.archlinux.org/packages/cmus-syncthing/) is available on AUR.
+
 ## Configuration
 Before running cmus-syncthing for the first time, you need to generate a configuration file. To do so, run : 
 ```
