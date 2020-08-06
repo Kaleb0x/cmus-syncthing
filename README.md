@@ -15,10 +15,22 @@ sudo python setup.py install
 A [package](https://aur.archlinux.org/packages/cmus-syncthing/) is available on AUR.
 
 ## Configuration
+### Minimal configuration
 Before running cmus-syncthing for the first time, you need to generate a configuration file. To do so, run : 
 ```
 cmus-syncthing init
 ```
+
+This command will generate a minimal configuration file located in $XDG_CONFIG_HOME containing the playlist and sync folders and a verbosity option.
+
+### Playlist exclusion
+You can also exclude specific playlists from syncing. To do so, add their exact names in the configuration files as follows :
+```
+[Options]
+exclude=playlist1,playlist2
+```
+
+A [configuration file template](share/cmus-syncthing.conf) is available for further details.
 
 ## Contribution
 Contributions are welcome. Please read the [contribution guidelines](CONTRIBUTING.md) beforehand.
