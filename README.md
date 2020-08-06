@@ -24,7 +24,7 @@ cmus-syncthing init
 This command will generate a minimal configuration file located in $XDG_CONFIG_HOME containing the playlist and sync folders and a verbosity option.
 
 ### Playlist exclusion
-You can also exclude specific playlists from syncing. To do so, add their exact names in the configuration files as follows :
+You can also exclude specific playlists from syncing. To do so, add their exact names in the configuration file as follows :
 ```
 [Options]
 exclude=playlist1,playlist2
