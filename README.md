@@ -32,6 +32,22 @@ exclude=playlist1,playlist2
 
 A [configuration file template](share/cmus-syncthing.conf) is available for further details.
 
+### systemd unit files
+systemd [service](share/cmus-syncthing.service) and [timer](share/cmus-syncthing.timer) unit files can be used to run cmus-syncthing. 
+
+## Running
+### Manual running
+You can run cmus-syncthing manually from the command line when required :
+```
+$ cmus-syncthing
+```
+
+### systemd service
+Each system user can start/enable the provided systemd timer on a user level to sync their playlists. The timer runs cmus-syncthing every 15 minutes. Once the files are properly installed on your system, you can enable it by running :
+```
+$ systemctl --user enable cmus-syncthing.timer
+```
+
 ## Contribution
 Contributions are welcome. Please read the [contribution guidelines](CONTRIBUTING.md) beforehand.
 
