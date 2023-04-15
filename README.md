@@ -11,8 +11,10 @@ python setup.py build
 sudo python setup.py install
 ```
 
-### Archlinux
-A [package](https://aur.archlinux.org/packages/cmus-syncthing/) is available on AUR.
+### System-specific installation
+Packages are available on the following repositories:
+
+[![Packaging status](https://repology.org/badge/vertical-allrepos/cmus-syncthing.svg)](https://repology.org/project/cmus-syncthing/versions)
 
 ## Configuration
 ### Minimal configuration
