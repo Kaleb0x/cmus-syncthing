@@ -42,7 +42,7 @@ class SyncMachine:
         if answer == "" or answer.lower() == "y":
             config.set("Options", "verbose", "True")
         else:
-            config("Options", "verbose", "False")
+            config.set("Options", "verbose", "False")
 
         with open(config_file, "w") as f:
             config.write(f)
